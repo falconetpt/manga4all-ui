@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MangaReader from "./reader/MangaReader";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const routes = [
+        {
+            path: "/reader",
+            component: MangaReader
+        }
+    ];
+
+    return (
+        <Router>
+            <div>
+                <ul>
+                    <li>
+                        <Link to="/">Tacos</Link>
+                    </li>
+                    <li>
+                        <Link to="/reader">Sandwiches</Link>
+                    </li>
+                </ul>
+
+                <Switch>
+                    {routes.map((route, i) => (
+                        <RouteWithSubRoutes key={i} {...route} />
+                    ))}
+                </Switch>
+            </div>
+        </Router>
+    );
+}
+
+function RouteWithSubRoutes(route) {
+    return (
+        <Route
+            path={route.path}
+            render={props => (
+                // pass the sub-routes down to keep nesting
+                <route.component {...props} routes={route.routes} />
+            )}
+        />
+    );
 }
 
 export default App;
