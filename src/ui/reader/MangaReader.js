@@ -1,6 +1,6 @@
 import React from "react";
 
-class MangaReader extends React.Component {
+export default class MangaReader extends React.Component {
     render() {
         let images = [
             "https://s8.mkklcdnv8.com/mangakakalot/k1/kimetsu_no_yaiba/chapter_194_scorching_wounds/1.jpg",
@@ -44,5 +44,3 @@ class MangaReader extends React.Component {
         );
     }
 }
-
-export default MangaReader;
