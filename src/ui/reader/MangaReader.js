@@ -33,7 +33,7 @@ export default class MangaReader extends React.Component {
             <div style={{textAlign: "center", backgroundColor: "black"}}>
                 {
                     images.map(img =>
-                        <div>
+                        <div key={img}>
                             <img src={img} style={imageStyle}/>
                             {/*<hr/>*/}
                             {/*<br/>*/}

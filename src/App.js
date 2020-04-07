@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import PrimarySearchAppBar from "./ui/navigation/PrimarySearchAppBar";
 import Panel from "./ui/panel/Panel";
+import LatestPanel from "./ui/panel/LatestPanel";
 
 function App() {
     const routes = [
