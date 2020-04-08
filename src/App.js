@@ -8,8 +8,9 @@ import {
     Link
 } from "react-router-dom";
 import PrimarySearchAppBar from "./ui/navigation/PrimarySearchAppBar";
-import Panel from "./ui/panel/Panel";
 import LatestPanel from "./ui/panel/LatestPanel";
+import Panel from "./ui/panel/LatestPanel";
+import PopularPanel from "./ui/panel/PopularPanel";
 
 function App() {
     const routes = [
@@ -19,7 +20,11 @@ function App() {
         },
         {
             path: "/latest",
-            component: Panel
+            component: LatestPanel
+        },
+        {
+            path: "/popular",
+            component: PopularPanel
         }
     ];
 
@@ -34,6 +39,9 @@ function App() {
                         </li>
                         <li>
                             <Link to="/latest">Latest</Link>
+                        </li>
+                        <li>
+                            <Link to="/popular">Popular</Link>
                         </li>
                         <li>
                             <Link to="/reader">Reader</Link>

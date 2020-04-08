@@ -31,7 +31,7 @@ export default function SpacingGrid() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/scrapper/latest/' + page,
+        fetch('http://localhost:8080/api/v1/scrapper/popular/' + page,
             {
                 method: "GET"
             })

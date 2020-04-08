@@ -1,6 +1,21 @@
-import React, {Component, useEffect, useState} from "react"
+import React, { useState, useEffect } from "react";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper/Paper";
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 2,
+    },
+    paper: {
+        height: "250px",
+        width: "140px",
+        padding: "20px"
+    },
+    control: {
+        padding: theme.spacing(2),
+    },
+}));
 
 export default function SpacingGrid() {
     const [page, setPage] = useState(1);
@@ -29,6 +44,8 @@ export default function SpacingGrid() {
             .catch(console.log)
     }, [page]);
 
+    const classes = useStyles();
+
     const mangaImageStyle = {
         maxWidth: "100%",
         maxHeight: "100%"
@@ -38,21 +55,28 @@ export default function SpacingGrid() {
         margin: "10px"
     };
 
-    const paper = {
-        height: "250px",
-        width: "140px",
-        padding: "20px"
-    };
 
-
-    return elements.map((value) => (
-            <a href={value.mangaUrl} style={ { textAlign: "center", textDecoration: "none" } }>
-                <Grid key={value} style={gridMargin} item>
-                    <Paper className={paper}>
-                        <img src={value.imageUrl} alt={value.name} style={mangaImageStyle}/>
-                        <p><strong>{value.name}</strong></p>
-                    </Paper>
+    return(
+        <div>
+            {isLoading && <p>Wait I'm Loading things for you :)</p>}
+            <Paper elevation={3}>
+                <Grid container className={classes.root} spacing={4}>
+                    <Grid item xs={12}>
+                        <Grid container justify="center" spacing={4} style={gridMargin}>
+                            {elements.map((value) => (
+                                <a href={value.mangaUrl} style={ { textAlign: "center", textDecoration: "none" } }>
+                                    <Grid key={value} style={gridMargin} item>
+                                        <Paper className={classes.paper}>
+                                            <img src={value.imageUrl} alt={value.name} style={mangaImageStyle}/>
+                                            <p><strong>{value.name}</strong></p>
+                                        </Paper>
+                                    </Grid>
+                                </a>
+                            ))}
+                        </Grid>
+                    </Grid>
                 </Grid>
-            </a>
-        ));
+            </Paper>
+        </div>
+    );
 }
