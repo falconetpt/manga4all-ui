@@ -1,22 +1,29 @@
 import React from 'react';
 import './App.css';
-import MangaReader from "./ui/reader/MangaReader";
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link, withRouter
 } from "react-router-dom";
 import PrimarySearchAppBar from "./ui/navigation/PrimarySearchAppBar";
 import LatestPanel from "./ui/panel/LatestPanel";
-import Panel from "./ui/panel/LatestPanel";
 import PopularPanel from "./ui/panel/PopularPanel";
+import RoutePropsContext from "./utils/context/RoutePropsContext";
+import Chapter from "./ui/chapter/Chapter";
+import Reader from "./ui/reader/MangaReader";
 
-function App() {
+function App(props) {
+    const routeProps = {
+        match: props.match,
+        location: props.location,
+        history: props.history,
+        state: {}
+    };
+
     const routes = [
         {
             path: "/reader",
-            component: MangaReader
+            component: Reader
         },
         {
             path: "/latest",
@@ -25,37 +32,29 @@ function App() {
         {
             path: "/popular",
             component: PopularPanel
+        },
+        {
+            path: "/chapter",
+            component: Chapter
         }
     ];
 
     return (
-        <div>
-            <PrimarySearchAppBar/>
-            <Router>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/latest">Latest</Link>
-                        </li>
-                        <li>
-                            <Link to="/popular">Popular</Link>
-                        </li>
-                        <li>
-                            <Link to="/reader">Reader</Link>
-                        </li>
-                    </ul>
+        <RoutePropsContext.Provider value={routeProps}>
+            <div>
+                <PrimarySearchAppBar/>
 
-                    <Switch>
-                        {routes.map((route, i) => (
-                            <RouteWithSubRoutes key={i} {...route} />
-                        ))}
-                    </Switch>
-                </div>
-            </Router>
-        </div>
+                <Switch>
+                    <Route path="/" exact component={PopularPanel}/>
+                </Switch>
+
+                <Switch>
+                    {routes.map((route, i) => (
+                        <RouteWithSubRoutes key={i} {...route} />
+                    ))}
+                </Switch>
+            </div>
+        </RoutePropsContext.Provider>
     );
 }
 
@@ -71,4 +70,4 @@ function RouteWithSubRoutes(route) {
     );
 }
 
-export default App;
+export default withRouter(App);
