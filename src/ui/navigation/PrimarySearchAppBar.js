@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
 import {Router, Link, Route} from "react-router-dom";
-import { createBrowserHistory } from "history";
+import SearchBar from 'material-ui-search-bar'
 
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -13,11 +13,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import PopularPanel from "../panel/PopularPanel";
-import LatestPanel from "../panel/LatestPanel";
+import Search from "./Search";
 
 const drawerWidth = 240;
-const history = createBrowserHistory();
+
 
 const styles = theme => ({
     root: {
@@ -55,11 +54,17 @@ const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick }) => (
                 <Typography variant="h6" color="inherit" className={classes.flex}>
                     {title}
                 </Typography>
+                <Search></Search>
             </Toolbar>
         </AppBar>
         <div className={classes.toolbarMargin} />
     </Fragment>
 ));
+
+
+function search(value) {
+
+}
 
 const MyDrawer = withStyles(styles)(
     ({ classes, variant, open, onClose, onItemClick }) => (

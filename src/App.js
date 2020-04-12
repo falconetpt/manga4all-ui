@@ -11,6 +11,7 @@ import PopularPanel from "./ui/panel/PopularPanel";
 import RoutePropsContext from "./utils/context/RoutePropsContext";
 import Chapter from "./ui/chapter/Chapter";
 import Reader from "./ui/reader/MangaReader";
+import SearchPanel from "./ui/panel/SearchPanel";
 
 function App(props) {
     const routeProps = {
@@ -36,6 +37,10 @@ function App(props) {
         {
             path: "/chapter",
             component: Chapter
+        },
+        {
+            path: "/search",
+            component: SearchPanel
         }
     ];
 

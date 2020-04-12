@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
+import useRouteProps from "../../utils/context/useRouteProps";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,9 +20,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SpacingGrid() {
+    const {location} = useRouteProps();
+    const keyword = location.pathname.split("q=")[1];
     const [page, setPage] = useState(1);
     const [elements, setElements] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    console.log("pudim", location);
 
     const loadNextPage = () => {
         setPage(page + 1);
@@ -31,13 +37,12 @@ export default function SpacingGrid() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/scrapper/latest/' + page,
+        fetch('http://localhost:8080/api/v1/scrapper/search/' + keyword + "/" + page,
             {
                 method: "GET"
             })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
                 setElements(data);
                 setIsLoading(false);
             })
@@ -64,14 +69,22 @@ export default function SpacingGrid() {
                     <Grid item xs={12}>
                         <Grid container justify="center" spacing={4} style={gridMargin}>
                             {elements.map((value) => (
-                                <a href={value.mangaUrl} style={ { textAlign: "center", textDecoration: "none" } }>
+                                <Link key={value.name} to={{
+                                    pathname: "/chapter",
+                                    state: {
+                                        id: value.id,
+                                        name: value.name,
+                                        mangaUrl: value.mangaUrl,
+                                        imageUrl: value.imageUrl
+                                    }
+                                }} style={ { textAlign: "center", textDecoration: "none" } }>
                                     <Grid key={value} style={gridMargin} item>
                                         <Paper className={classes.paper}>
                                             <img src={value.imageUrl} alt={value.name} style={mangaImageStyle}/>
                                             <p><strong>{value.name}</strong></p>
                                         </Paper>
                                     </Grid>
-                                </a>
+                                </Link>
                             ))}
                         </Grid>
                     </Grid>
