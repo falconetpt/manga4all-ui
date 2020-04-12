@@ -37,10 +37,6 @@ function App(props) {
         {
             path: "/chapter",
             component: Chapter
-        },
-        {
-            path: "/search",
-            component: SearchPanel
         }
     ];
 
@@ -51,6 +47,8 @@ function App(props) {
 
                 <Switch>
                     <Route path="/" exact component={PopularPanel}/>
+                    <Route path='/search/:keyword' exact render= {routeProps =>
+                        <SearchPanel {...routeProps} key={document.location.href} />} />
                 </Switch>
 
                 <Switch>

@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import useRouteProps from "../../utils/context/useRouteProps";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SpacingGrid() {
+function SpacingGrid() {
     const {location} = useRouteProps();
-    const keyword = location.pathname.split("q=")[1];
     const [page, setPage] = useState(1);
+    const keyword = location.pathname.split("/")[2];
     const [elements, setElements] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log("pudim", location);
+    console.log("pudim", useRouteProps());
 
     const loadNextPage = () => {
         setPage(page + 1);
@@ -93,3 +93,5 @@ export default function SpacingGrid() {
         </div>
     );
 }
+
+export default withRouter(SpacingGrid)
