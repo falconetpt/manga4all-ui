@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import SearchBar from "material-ui-search-bar";
 import Button from "@material-ui/core/Button";
 import {withRouter} from "react-router-dom";
+import {Search} from "@material-ui/icons";
 
 
-class Search extends Component {
+class SearchComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -30,4 +31,4 @@ class Search extends Component {
     }
 }
 
-export default withRouter(Search)
+export default withRouter(SearchComponent)
