@@ -127,7 +127,7 @@ function AppBarInteraction({ classes, variant }) {
 
     return (
         <div className={classes.root}>
-            <MyToolbar title={"MANGA 4 ALL"} onMenuClick={toggleDrawer} />
+            <MyToolbar onMenuClick={toggleDrawer} />
             <MyDrawer
                 open={drawer}
                 onClose={toggleDrawer}
