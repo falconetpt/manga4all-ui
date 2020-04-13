@@ -38,7 +38,7 @@ function App(props) {
 
     return (
         <RoutePropsContext.Provider value={routeProps}>
-            <div>
+            <div style={{backgroundColor: 'black'}}>
                 <PrimarySearchAppBar/>
 
                 <Switch>
