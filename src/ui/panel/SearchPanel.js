@@ -14,12 +14,11 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        backgroundColor: 'black',
-        margin: '10px'
+        backgroundColor: 'black'
     },
     gridList: {
-        width: '100%',
-        height: '900px',
+        height: '100vh',
+        width: '100vw',
         flexWrap: 'wrap',
         margin: 'auto',
         justifyContent: 'center',
