@@ -9,6 +9,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,51 +58,31 @@ export default function SpacingGrid() {
 
     return(
         <div className={classes.root}>
-            {isLoading && <p>Wait I'm Loading things for you :)</p>}
-
-            {/*{elements.map((value) => (*/}
-            {/*    <Link key={value.name} to={{*/}
-            {/*        pathname: "/chapter",*/}
-            {/*        state: {*/}
-            {/*            id: value.id,*/}
-            {/*            name: value.name,*/}
-            {/*            mangaUrl: value.mangaUrl,*/}
-            {/*            imageUrl: value.imageUrl*/}
-            {/*        }*/}
-            {/*    }} style={ { textAlign: "center", textDecoration: "none" } }>*/}
-            {/*        <Grid key={value} style={gridMargin} item>*/}
-            {/*            <Paper className={classes.paper}>*/}
-            {/*                <img src={value.imageUrl} alt={value.name} style={mangaImageStyle}/>*/}
-            {/*                <p><strong>{value.name}</strong></p>*/}
-            {/*            </Paper>*/}
-            {/*        </Grid>*/}
-            {/*    </Link>*/}
-            {/*))}*/}
-
-            <GridList cellHeight={180} className={classes.gridList}>
+            <GridList cellHeight={250}  spacing={1} className={classes.gridList}>
+                {isLoading && <CircularProgress style={ { textAlign: "center" } } />}
                 {elements.map((value) => (
-                        <GridListTile key={value.id}>
-                            <Link to={{
-                                pathname: "/chapter",
-                                state: {
-                                    id: value.id,
-                                    name: value.name,
-                                    mangaUrl: value.mangaUrl,
-                                    imageUrl: value.imageUrl
+                    <GridListTile key={value.id}>
+                        <Link to={{
+                            pathname: "/chapter",
+                            state: {
+                                id: value.id,
+                                name: value.name,
+                                mangaUrl: value.mangaUrl,
+                                imageUrl: value.imageUrl
+                            }
+                        }} style={ { textDecoration: "none" } }>
+                            <img src={value.imageUrl} alt={value.name} />
+                            <GridListTileBar
+                                title={value.name}
+                                subtitle={<span>{value.name}</span>}
+                                actionIcon={
+                                    <IconButton aria-label={`info about ${value.name}`} className={classes.icon}>
+                                        <InfoIcon />
+                                    </IconButton>
                                 }
-                            }} style={ { textDecoration: "none" } }>
-                                <img src={value.imageUrl} alt={value.name} />
-                                <GridListTileBar
-                                    title={value.name}
-                                    subtitle={<span>{value.name}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${value.name}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
-                            </Link>
-                        </GridListTile>
+                            />
+                        </Link>
+                    </GridListTile>
                 ))}
             </GridList>
 
