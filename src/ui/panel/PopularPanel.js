@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'black'
     },
     gridList: {
-        height: '100vh',
+        height: '90vh',
         width: '100vw',
         flexWrap: 'wrap',
         margin: 'auto',
