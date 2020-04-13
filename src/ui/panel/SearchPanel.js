@@ -4,19 +4,29 @@ import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import useRouteProps from "../../utils/context/useRouteProps";
 import {Link, withRouter} from "react-router-dom";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar/GridListTileBar";
+import IconButton from "@material-ui/core/IconButton";
+import InfoIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 2,
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper
     },
-    paper: {
-        height: "250px",
-        width: "140px",
-        padding: "20px"
+    gridList: {
+        width: '100%',
+        height: '900px',
+        flexWrap: 'wrap',
+        margin: 'auto'
     },
-    control: {
-        padding: theme.spacing(2),
-    },
+    icon: {
+        color: 'rgba(255, 255, 255, 0.54)',
+    }
 }));
 
 function SpacingGrid() {
@@ -62,34 +72,34 @@ function SpacingGrid() {
 
 
     return(
-        <div>
-            {isLoading && <p>Wait I'm Loading things for you :)</p>}
-            <Paper elevation={3}>
-                <Grid container className={classes.root} spacing={4}>
-                    <Grid item xs={12}>
-                        <Grid container justify="center" spacing={4} style={gridMargin}>
-                            {elements.map((value) => (
-                                <Link key={value.name} to={{
-                                    pathname: "/chapter",
-                                    state: {
-                                        id: value.id,
-                                        name: value.name,
-                                        mangaUrl: value.mangaUrl,
-                                        imageUrl: value.imageUrl
-                                    }
-                                }} style={ { textAlign: "center", textDecoration: "none" } }>
-                                    <Grid key={value} style={gridMargin} item>
-                                        <Paper className={classes.paper}>
-                                            <img src={value.imageUrl} alt={value.name} style={mangaImageStyle}/>
-                                            <p><strong>{value.name}</strong></p>
-                                        </Paper>
-                                    </Grid>
-                                </Link>
-                            ))}
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Paper>
+        <div className={classes.root}>
+            <GridList cellHeight={250} cols={0} className={classes.gridList}>
+                {isLoading && <p1 style={ { textAlign: "center" } }>LOADING ...</p1>}
+                {elements.map((value) => (
+                    <GridListTile key={value.id}>
+                        <Link to={{
+                            pathname: "/chapter",
+                            state: {
+                                id: value.id,
+                                name: value.name,
+                                mangaUrl: value.mangaUrl,
+                                imageUrl: value.imageUrl
+                            }
+                        }} style={ { textDecoration: "none" } }>
+                            <img src={value.imageUrl} alt={value.name} />
+                            <GridListTileBar
+                                title={value.name}
+                                subtitle={<span>{value.name}</span>}
+                                actionIcon={
+                                    <IconButton aria-label={`info about ${value.name}`} className={classes.icon}>
+                                        <InfoIcon />
+                                    </IconButton>
+                                }
+                            />
+                        </Link>
+                    </GridListTile>
+                ))}
+            </GridList>
         </div>
     );
 }

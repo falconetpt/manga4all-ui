@@ -17,15 +17,17 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper
     },
     gridList: {
-        width: '400px',
+        width: '100%',
         height: '900px',
+        flexWrap: 'wrap',
+        margin: 'auto'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
-    },
+    }
 }));
 
 export default function SpacingGrid() {
@@ -58,8 +60,8 @@ export default function SpacingGrid() {
 
     return(
         <div className={classes.root}>
-            <GridList cellHeight={250}  spacing={1} className={classes.gridList}>
-                {isLoading && <CircularProgress style={ { textAlign: "center" } } />}
+            <GridList cellHeight={250} cols={0} className={classes.gridList}>
+                {isLoading && <p1 style={ { textAlign: "center" } }>LOADING ...</p1>}
                 {elements.map((value) => (
                     <GridListTile key={value.id}>
                         <Link to={{
@@ -85,7 +87,6 @@ export default function SpacingGrid() {
                     </GridListTile>
                 ))}
             </GridList>
-
         </div>
     );
 }
