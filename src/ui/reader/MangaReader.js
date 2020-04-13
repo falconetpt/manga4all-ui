@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import useRouteProps from '../../utils/context/useRouteProps';
 
 function Reader() {
-    const {state} = useRouteProps();
-
     const {location} = useRouteProps();
     const [elements, setElements] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
