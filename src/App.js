@@ -1,10 +1,6 @@
 import React from 'react';
 import './App.css';
-import {
-    Switch,
-    Route,
-    Link, withRouter
-} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import PrimarySearchAppBar from "./ui/navigation/PrimarySearchAppBar";
 import LatestPanel from "./ui/panel/LatestPanel";
 import PopularPanel from "./ui/panel/PopularPanel";

@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import SearchBar from "material-ui-search-bar";
-import Button from "@material-ui/core/Button";
 import {withRouter} from "react-router-dom";
-import {Search} from "@material-ui/icons";
 
 
 class SearchComponent extends Component {
