@@ -34,7 +34,7 @@ function Chapter() {
     return(
         <div>
             {isLoading && <p>Wait I'm Loading things for you :)</p>}
-            <ul>
+            <ul style={{ color: '#ffffff' }}>
                 {elements.map(value =>
                     <li key={value.url}>
                         <Link key={value} to={{
@@ -44,7 +44,7 @@ function Chapter() {
                                 name: value.name,
                                 url: value.url
                             }
-                        }} style={ { textAlign: "center", textDecoration: "none" } }>
+                        }} style={ { textAlign: "center", textDecoration: "none", color: '#ffffff' } }>
                             {value.name}
                         </Link>
                     </li>
