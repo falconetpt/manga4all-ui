@@ -42,7 +42,7 @@ function Chapter() {
                             state: {
                                 number: value.number,
                                 name: value.name,
-                                url: value.url
+                                mangaId: location.state.id
                             }
                         }} style={ { textAlign: "center", textDecoration: "none", color: '#ffffff' } }>
                             {value.name}

@@ -17,7 +17,7 @@ function Reader() {
             body: JSON.stringify({
                 number: location.state.number,
                 name: location.state.name,
-                url: location.state.url
+                mangaId: location.state.mangaId
             })
         })
             .then(response => response.json())
